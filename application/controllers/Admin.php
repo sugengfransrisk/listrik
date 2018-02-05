@@ -22,31 +22,39 @@ class Admin extends CI_Controller{
         $this->load->view('layouts/main',$data);
     }
 
+    function detail(){
+        $id = $this->input->post('id');
+        $data['detail'] =  $this->Admin_model->getDetail($id);
+        $this->load->view('profile/profile', $data);
+    }
     /*
      * Adding a new admin
      */
+
+    function tambah(){
+
+        $data['_view'] = 'admin/add';
+        $this->load->view('layouts/main',$data);
+    }
     function add()
     {   
-        if(isset($_POST) && count($_POST) > 0)     
-        {   
-            $params = array(
-				'password' => $this->input->post('password'),
-				'username' => $this->input->post('username'),
-				'fullname' => $this->input->post('fullname'),
-				'role' => $this->input->post('role'),
-				'foto' => $this->input->post('foto'),
-				'alamat' => $this->input->post('alamat'),
-				'last_login' => $this->input->post('last_login'),
-            );
-            
-            $admin_id = $this->Admin_model->add_admin($params);
-            redirect('admin/index');
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']  = '2000';
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+        
+        if (  $this->upload->do_upload('foto')){
+            if($this->Admin_model->add_admin($this->upload->data()) == TRUE){
+                redirect('admin/index');
+            } else {
+                redirect('admin/tambah');
+            }
+        } else {
+            $this->session->set_flashdata('failed', $this->upload->display_errors());
+            redirect('admin/tambah');
         }
-        else
-        {            
-            $data['_view'] = 'admin/add';
-            $this->load->view('layouts/main',$data);
-        }
+        
     }  
 
     /*

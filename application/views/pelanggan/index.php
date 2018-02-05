@@ -4,11 +4,11 @@
             <div class="box-header">
                 <h3 class="box-title">Pelanggan Listing</h3>
             	<div class="box-tools">
-                    <a href="<?php echo site_url('pelanggan/add'); ?>" class="btn btn-success btn-sm">Add</a> 
+                    <a href="<?php echo base_url('pelanggan/add'); ?>" class="btn btn-success btn-sm">Add</a> 
                 </div>
             </div>
             <div class="box-body">
-                <table id="datatable" class="table table-striped">
+                <table id="example2" class="table table-striped">
                     <tr>
 						<th>ID</th>
 						<th>Nama</th>
@@ -36,3 +36,4 @@
         </div>
     </div>
 </div>
+

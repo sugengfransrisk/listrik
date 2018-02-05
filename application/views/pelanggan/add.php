@@ -24,8 +24,13 @@
 					<div class="col-md-6">
 						<label for="kodeTarif" class="control-label">KodeTarif</label>
 						<div class="form-group">
-							<input type="text" name="kodeTarif" value="<?php echo $this->input->post('kodeTarif'); ?>" class="form-control" id="kodeTarif" />
-						</div>
+		                <select name="tarif" class="form-control select2" style="width: 100%;">
+		                <?php foreach($tarif as $t){ ?>
+		                  <option value="<?php echo $t['kode']; ?>"><?php echo $t['kode']; ?></option>
+		                  <?php } ?>
+		                 
+		                </select>
+		              </div>
 					</div>
 				</div>
 			</div>
@@ -38,3 +43,11 @@
       	</div>
     </div>
 </div>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    
+  })
+</script>

@@ -6,25 +6,27 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Dashboard_model');
-		
+		if($this->session->userdata('logged_in') == false){
+			redirect('login');
+		}
 	}
 
 	public function index(){
 		$data = array(
 			'title'			=> 'Dashboard',
-			'view'	=> 'dashboard',
-			'agtCount'		=> $this->Dashboard_model->getAgtCount(),
-			'bkCount'		=> $this->Dashboard_model->getBookCount(),
-			'ptgCount'		=> $this->Dashboard_model->getPtgCount(),
-			'trnCount'		=> $this->Dashboard_model->getTransCount(),
-			'pnjCount'		=> $this->Dashboard_model->getPinjamCount(),
-			'kmbCount'		=> $this->Dashboard_model->getKmbCount(),
-			'agtList'		=> $this->Dashboard_model->getAgtList(),
-			'bkList'		=> $this->Dashboard_model->getBkList(),
-			'ptgList'		=> $this->Dashboard_model->getPtgList(),
-			'trnList'		=> $this->Dashboard_model->getTrnList()
+			'_view'	=> 'dashboard',
+			'tgcount'		=> $this->Dashboard_model->tagihancount(),
+			'admcount'		=> $this->Dashboard_model->admincount(),
+			'byrcount'		=> $this->Dashboard_model->pembayarancount(),
+			'trfcount'		=> $this->Dashboard_model->tarifcount(),
+			'plcount'		=> $this->Dashboard_model->pelanggancount(),
+			'adminlist'		=> $this->Dashboard_model->adminlist(),
+			'tariflist'		=> $this->Dashboard_model->tariflist(),
+			'pelangganlist'		=> $this->Dashboard_model->pelangganlist(),
+			'tagihanlist'		=> $this->Dashboard_model->tagihanlist(),
+			'data'=>$this->Dashboard_model->grafik()
 		);
-		$this->load->view('template', $data);
+		$this->load->view('layouts/main', $data);
 	}
 
 	public function logout(){
@@ -50,6 +52,7 @@ class Dashboard extends CI_Controller {
 			$this->load->view('full_404_view');
 		}
 	}
+	
 
 }
 

@@ -14,24 +14,28 @@ class Login extends CI_Controller {
 		$this->load->view('login');
 	}
 	public function dologin(){
-		if($this->input->post('login')){
-			$this->form_validation->set_rules('username', 'Username', 'trim|required');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required');
-			if ($this->form_validation->run() == true) {
 				if($this->Login_model->userCheck() == true){
 					$src = $this->input->get('src');
 					if(!empty($src)){
 						redirect($src);
-					}else{redirect('admin');}
+					}else{redirect('dashboard');}
 				}else{
 					$this->session->set_flashdata('announce', 'Invalid username or password');
 					redirect('login');
 				}
-			} else {
-				$this->session->set_flashdata('announce', validation_errors());
-				redirect('login');
 			}
-		}
+			
+			
+	
+	public function logout(){
+		$data = array(
+			'username'	=> '',
+			'logged_in'	=> false,
+			'role'		=> ''
+		);
+
+		$this->session->sess_destroy();
+		redirect('login');
 	}
 
 }

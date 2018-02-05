@@ -35,6 +35,7 @@ class Pelanggan extends CI_Controller{
      */
     function add()
     {   
+        $data['tarif']=$this->Pelanggan_model->get_tarif();
         $this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nama','Nama','required');
@@ -45,7 +46,7 @@ class Pelanggan extends CI_Controller{
             $params = array(
 				'nama' => $this->input->post('nama'),
 				'alamat' => $this->input->post('alamat'),
-				'kodeTarif' => $this->input->post('kodeTarif'),
+				'kodeTarif' => $this->input->post('tarif'),
             );
             
             $pelanggan_id = $this->Pelanggan_model->add_pelanggan($params);

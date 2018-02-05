@@ -18,6 +18,10 @@ class Pelanggan_model extends CI_Model
     {
         return $this->db->get_where('pelanggan',array('id'=>$id))->row_array();
     }
+     function get_tarif()
+    {
+        return $this->db->get('tarif')->result_array();
+    }
     
     /*
      * Get all pelanggan count

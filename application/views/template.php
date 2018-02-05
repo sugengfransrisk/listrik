@@ -54,7 +54,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="<?php echo base_url(); ?>login" class="btn btn-success square-btn-adjust">Logout</a> </div>
+                font-size: 16px;"> Last access :<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('last_login'); ?> &nbsp; <a href="<?php echo base_url(); ?>login/logout" class="btn btn-success square-btn-adjust">Logout</a> </div>
                    
                 </ul>
             </div>
@@ -76,21 +76,21 @@
                         <a  href="#"> <b class="hidden-xs">Steave</b> </a>
                     </li>
                     <li style="padding: 10px 0 0;">
-                        <a href="index.html" class="waves-effect"><i class="fa fa-dashboard fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Dashboard</span></b></a>
+                        <a href="<?php echo base_url() ?>dashboard" class="waves-effect"><i class="fa fa-dashboard fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Dashboard</span></b></a>
                     </li>
 
                     <li>
-                        <a href="profile.html" class="waves-effect"><i class="fa fa-users fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Pelanggan</span></b></a>
+                        <a href="<?php echo base_url() ?>pelanggan" class="waves-effect"><i class="fa fa-users fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Pelanggan</span></b></a>
                     </li>
                     <li>
-                        <a href="basic-table.html" class="waves-effect"><i class="fa fa-money fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Pembayaran</span></b></a>
+                        <a href="<?php echo base_url() ?>pembayaran" class="waves-effect"><i class="fa fa-money fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;<span class="hide-menu">Pembayaran</span></b></a>
                     </li>
                      <li>
-                        <a href="basic-table.html" class="waves-effect"><i class="fa fa-dollar fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="<?php echo base_url() ?>tarif" class="waves-effect"><i class="fa fa-dollar fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="hide-menu">Tarif</span></b></a>
                     </li>
                     <li>
-                        <a href="fontawesome.html" class="waves-effect"><i class="fa fa-user fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hide-menu">Admin</span></b></a>
+                        <a href="<?php echo base_url() ?>admin" class="waves-effect"><i class="fa fa-user fa-2x" aria-hidden="true"></i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hide-menu">Admin</span></b></a>
                     </li>
                     
                 </ul>

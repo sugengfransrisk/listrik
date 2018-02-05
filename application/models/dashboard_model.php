@@ -3,29 +3,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard_model extends CI_Model {
 
-	public function getBookCount(){
+	public function tagihancount(){
 		return $this->db->count_all('tagihan');
 	}
 
-	public function getAgtCount(){
-		return $this->db->count_all('');
+	public function admincount(){
+		return $this->db->count_all('admin');
 	}
 
-	public function getPtgCount(){
-		return $this->db->where('ROLE', 'admin')->from('admin')->count_all_results();
+	public function tarifcount(){
+		return $this->db->count_all('tarif');
 	}
 
-	public function getTransCount(){
-		return $this->db->count_all('peminjaman');
+	public function pembayarancount(){
+		return $this->db->count_all('pembayaran');
 	}
 
-	public function getPinjamCount(){
-		return $this->db->where('STATS', 'Belum Kembali')->from('peminjaman')->count_all_results();
+	public function pelanggancount(){
+		return $this->db->count_all('pelanggan');
 	}
 
-	public function getKmbCount(){
-		return $this->db->where('STATS', 'Sudah Kembali')->from('peminjaman')->count_all_results();
-	}
+	
 
 	public function checkUser($uname){
 		$query = $this->db->where('USERNAME', $uname)->get('admin');
@@ -35,25 +33,39 @@ class Dashboard_model extends CI_Model {
 			return false;
 		}
 	}
-
-	public function getAgtList(){
-		return $this->db->order_by('ID_ANGGOTA', 'DESC')->limit(4)->get('anggota')->result();
+	public function grafik()
+	{
+	 $query = $this->db->query("SELECT bulanTagih,SUM(pemakaian) AS pemakaian FROM tagihan GROUP BY bulanTagih");
+         
+        if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+       }
+    }
+	public function adminlist(){
+		return $this->db->order_by('id', 'DESC')->limit(4)->get('admin')->result();
 	}
 
-	public function getBkList(){
-		return $this->db->order_by('ID_BUKU', 'DESC')->limit(4)->get('buku')->result();
+	public function tariflist(){
+		return $this->db->order_by('id', 'DESC')->limit(4)->get('tarif')->result();
 	}
 
-	public function getPtgList(){
-		return $this->db->order_by('ID_ADMIN', 'DESC')->limit(4)->get('admin')->result();
+	public function pembayaranlist(){
+		return $this->db->order_by('id', 'DESC')->limit(4)->get('pembayaran')->result();
 	}
 
-	public function getTrnList(){
+	public function pelangganlist(){
+		return $this->db->order_by('id', 'DESC')->limit(4)->get('pelanggan')->result();
+	}
+
+	public function tagihanlist(){
 		$this->db
-			->join('anggota', 'anggota.ID_ANGGOTA = peminjaman.ID_ANGGOTA', 'left')
-			->join('admin', 'admin.ID_ADMIN = peminjaman.ID_ADMIN', 'left')
-			->order_by('peminjaman.ID_PINJAM', 'DESC')->limit(4);
-		return $this->db->get('peminjaman')->result();
+			->join('pelanggan', 'pelanggan.id = tagihan.pelanggan_id', 'left')
+			->join('admin', 'admin.id = tagihan.id_admin', 'left')
+			->order_by('tagihan.id', 'DESC')->limit(4);
+		return $this->db->get('tagihan')->result();
 	}
 }
 

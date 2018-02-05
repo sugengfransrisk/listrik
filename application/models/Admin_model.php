@@ -18,7 +18,10 @@ class Admin_model extends CI_Model
     {
         return $this->db->get_where('admin',array('id'=>$id))->row_array();
     }
-        
+
+    public function getDetail($id){
+        return $this->db->where('id', $id)->get('admin')->row();
+    }
     /*
      * Get all admin
      */
@@ -31,10 +34,24 @@ class Admin_model extends CI_Model
     /*
      * function to add new admin
      */
-    function add_admin($params)
+    function add_admin($foto)
     {
-        $this->db->insert('admin',$params);
-        return $this->db->insert_id();
+        $now=date('d-m-Y H:i:s');
+         $data = array(
+                'password' => $this->input->post('password'),
+                'username' => $this->input->post('username'),
+                'fullname' => $this->input->post('fullname'),
+                'role' => $this->input->post('role'),
+                'foto' => $foto['file_name'],
+                'alamat' => $this->input->post('alamat'),
+                'last_login' => $now,
+            );
+        $this->db->insert('admin',$data);
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;            
+        } else {
+            return FALSE;
+        }
     }
     
     /*
