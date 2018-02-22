@@ -10,6 +10,10 @@ class Login extends CI_Controller {
 		$this->load->model('Login_model');
 		
 	}
+	function Pelanggan(){
+		$this->load->view('pelanggan/login');
+        
+    }
 	public function index(){
 		$this->load->view('login');
 	}
@@ -22,6 +26,17 @@ class Login extends CI_Controller {
 				}else{
 					$this->session->set_flashdata('announce', 'Invalid username or password');
 					redirect('login');
+				}
+			}
+	public function dologin_p(){
+				if($this->Login_model->pelangganCheck() == true){
+					$src = $this->input->get('src');
+					if(!empty($src)){
+						redirect($src);
+					}else{redirect('dashboard/dash_pel');}
+				}else{
+					$this->session->set_flashdata('announce', 'Invalid username or password');
+					redirect('login/Pelanggan');
 				}
 			}
 			

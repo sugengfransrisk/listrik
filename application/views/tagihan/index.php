@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <table class="table table-striped">
+                <table class="table table-striped table-hovered">
                     <tr>
 						<th>ID</th>
 						<th>TahunTagih</th>
@@ -25,15 +25,16 @@
 						<td><?php echo $t['bulanTagih']; ?></td>
 						<td><?php echo $t['pemakaian']; ?></td>
 						<td><?php echo $t['status']; ?></td>
-						<td><?php echo $t['pelanggan_id']; ?></td>
+						<td><?php echo $t['nama']; ?></td>
 						<td>
+                            <a href="<?php echo site_url('invoice/index/'.$t['id']); ?>" class="btn btn-success btn-xs"><span class="fa fa-credit-card"></span> Bayar</a> 
                             <a href="<?php echo site_url('tagihan/edit/'.$t['id']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('tagihan/remove/'.$t['id']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
                         </td>
                     </tr>
                     <?php } ?>
                 </table>
-                                
+                </div>        
             </div>
         </div>
     </div>

@@ -67,7 +67,7 @@ class Pelanggan extends CI_Controller{
         // check if the pelanggan exists before trying to edit it
         $data['pelanggan'] = $this->Pelanggan_model->get_pelanggan($id);
         
-        if(isset($data['pelanggan']['id']))
+        if(isset($data['pelanggan']['id_p']))
         {
             $this->load->library('form_validation');
 
@@ -103,7 +103,7 @@ class Pelanggan extends CI_Controller{
         $pelanggan = $this->Pelanggan_model->get_pelanggan($id);
 
         // check if the pelanggan exists before trying to delete it
-        if(isset($pelanggan['id']))
+        if(isset($pelanggan['id_p']))
         {
             $this->Pelanggan_model->delete_pelanggan($id);
             redirect('pelanggan/index');

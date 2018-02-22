@@ -4,7 +4,7 @@
             <div class="box-header with-border">
               	<h3 class="box-title">Pelanggan Edit</h3>
             </div>
-			<?php echo form_open('pelanggan/edit/'.$pelanggan['id']); ?>
+			<?php echo form_open('pelanggan/edit/'.$pelanggan['id_p']); ?>
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">

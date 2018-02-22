@@ -16,7 +16,7 @@ class Pelanggan_model extends CI_Model
      */
     function get_pelanggan($id)
     {
-        return $this->db->get_where('pelanggan',array('id'=>$id))->row_array();
+        return $this->db->get_where('pelanggan',array('id_p'=>$id))->row_array();
     }
      function get_tarif()
     {
@@ -37,12 +37,13 @@ class Pelanggan_model extends CI_Model
      */
     function get_all_pelanggan($params = array())
     {
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id_p', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('pelanggan')->result_array();
+        return $this->db->join('tarif', 'tarif.id = pelanggan.kodeTarif', 'left')
+                        ->get('pelanggan')->result_array();
     }
         
     /*
@@ -59,7 +60,7 @@ class Pelanggan_model extends CI_Model
      */
     function update_pelanggan($id,$params)
     {
-        $this->db->where('id',$id);
+        $this->db->where('id_p',$id);
         return $this->db->update('pelanggan',$params);
     }
     
@@ -68,6 +69,6 @@ class Pelanggan_model extends CI_Model
      */
     function delete_pelanggan($id)
     {
-        return $this->db->delete('pelanggan',array('id'=>$id));
+        return $this->db->delete('pelanggan',array('id_p'=>$id));
     }
 }

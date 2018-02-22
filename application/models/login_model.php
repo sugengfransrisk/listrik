@@ -15,8 +15,9 @@ public function userCheck(){
 			$data = array(
 				'username'	=> $kueri->row()->username,
 				'logged_in'	=> true,
-				'role'		=> $kueri->row()->password,
-				'foto'		=> $kueri->row()->foto
+				'role'		=> $kueri->row()->role,
+				'foto'		=> $kueri->row()->foto,
+				'id'        =>$kueri->row()->id
 			);
 			
 			$this->session->set_userdata($data);
@@ -27,7 +28,27 @@ public function userCheck(){
 			return false;
 		}
 	}
-	
+	public function pelangganCheck(){
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		
+		$kueri = $this->db->where('username', $username)->where('pass', $password)->get('pelanggan');
+		if($kueri->num_rows() > 0){
+			$data = array(
+				'username'	=> $kueri->row()->username,
+				'logged_in'	=> true,
+				'id'		=>$kueri->row()->id,
+				'foto'		=> $kueri->row()->foto
+			);
+			
+			$this->session->set_userdata($data);
+			$id = $kueri->row()->id;
+			
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }
 

@@ -11,11 +11,13 @@
         <!-- Ionicons -->
        
          <!-- Bootstrap 3.3.6 -->
+       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="<?php echo base_url('resources/css/bootstrap.min.css');?>">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php echo base_url('resources/css/font-awesome.min.css');?>">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+      
         <!-- Datetimepicker -->
         <link rel="stylesheet" href="<?php echo base_url('resources/css/bootstrap-datetimepicker.min.css');?>">
         <!-- Theme style -->
@@ -23,9 +25,6 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url('resources/css/_all-skins.min.css');?>">
-
-
-        <link rel="stylesheet" href="<?php echo base_url() ?>assets/bower_components/select2/dist/css/select2.min.css">
 
         
         <!-- Datatables -->
@@ -36,15 +35,15 @@
       
     </head>
     
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-white sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
                 <a href="" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><img style="width: 50px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" /></span>
+                    <span class="logo-mini"><img style="width: 30px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" /></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><img style="width: 50px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" />LISTRIKU</span>
+                    <span class="logo-lg"><img style="width: 30px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" />LISTRIKU</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -111,6 +110,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
+                        <?php if($this->session->userdata('role') == 'admin'): ?>
 						<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Admin</span>
@@ -126,7 +126,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-address-book"></i> <span>Pelanggan</span>
+                                <i class="fa fa-address-book fa-inverse"></i> <span>Pelanggan</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -139,7 +139,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Pembayaran</span>
+                                <i class="fa fa-print"></i> <span>Pembayaran</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -152,7 +152,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tagihan</span>
+                                <i class="fa fa-credit-card"></i> <span>Tagihan</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -165,7 +165,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tarif</span>
+                                <i class="fa fa-money"></i> <span>Tarif</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -176,6 +176,19 @@
                                 </li>
 							</ul>
                         </li>
+                    <?php endif;?>
+                      <?php if($this->session->userdata('role') == 'pelanggan'): ?>
+                    <li>
+                            <a href="#">
+                                <i class="fa fa-print"></i> <span>Pembayaran Listrik</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="<?php echo base_url('Pembayaran/index');?>"><i class="fa fa-list-ul"></i> Lihat</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <?php endif;?>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -227,6 +240,7 @@
          
        
       <!-- jQuery 2.2.3 -->
+        <!-- jQuery 2.2.3 -->
         <script src="<?php echo base_url('resources/js/jquery-2.2.3.min.js');?>"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo base_url('resources/js/bootstrap.min.js');?>"></script>
@@ -240,7 +254,6 @@
         <script src="<?php echo base_url('resources/js/moment.js');?>"></script>
         <script src="<?php echo base_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
         <script src="<?php echo base_url('resources/js/global.js');?>"></script>
-        <script src="<?php echo base_url();?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
         
 
     </body>

@@ -9,6 +9,7 @@ class Pembayaran extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Pembayaran_model');
+        $this->load->model('invoice_model');
     } 
 
     /*
@@ -20,6 +21,44 @@ class Pembayaran extends CI_Controller{
         
         $data['_view'] = 'pembayaran/index';
         $this->load->view('layouts/main',$data);
+    }
+
+    function ok($id){
+        $tarif=$this->invoice_model->tarif($id);
+        $pakai=$this->invoice_model->pemakaian($id);
+        $far=$this->invoice_model->tampil($id);
+        $now = date('Y-m-d');
+        $bulan= date('m');
+        $tgl= date('d');
+        if ($tgl>30) {
+            
+           $denda=5000;
+        } else {
+            $denda=0;
+        }
+        
+
+
+        $total=$tarif * $pakai;
+        $params = array(
+            'tanggal_bayar' => $now, 
+            'id_tagihan' => $far['id'],
+            'jumlah_tagihan' => $total,
+            'biaya_denda' => $denda,
+            'biaya_admin' => 5000,
+            'status' => "menunggu konfirmasi",
+            'id_admin' => $this->session->userdata('id')
+
+
+        );
+        if ($this->Pembayaran_model->submit($params,$id)== true) {
+            redirect('pembayaran/index');
+        } else {
+            redirect('pembayaran/index');
+        }
+        
+
+        
     }
 
     /*

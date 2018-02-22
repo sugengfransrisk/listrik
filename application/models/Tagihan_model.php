@@ -25,9 +25,11 @@ class Tagihan_model extends CI_Model
     function get_all_tagihan()
     {
         $this->db->order_by('id', 'desc');
-        return $this->db->get('tagihan')->result_array();
+        return $this->db->join('pelanggan', 'pelanggan.id_p = tagihan.pelanggan_id', 'left')
+                        ->get('tagihan')->result_array();
     }
         
+
     /*
      * function to add new tagihan
      */

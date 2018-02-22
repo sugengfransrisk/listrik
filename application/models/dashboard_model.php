@@ -25,17 +25,13 @@ class Dashboard_model extends CI_Model {
 
 	
 
-	public function checkUser($uname){
-		$query = $this->db->where('USERNAME', $uname)->get('admin');
-		if($query->num_rows() > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
+	
 	public function grafik()
 	{
-	 $query = $this->db->query("SELECT bulanTagih,SUM(pemakaian) AS pemakaian FROM tagihan GROUP BY bulanTagih");
+		$id=$this->session->userdata('id');
+
+	 $query = $this->db->query("SELECT bulanTagih,SUM(pemakaian) AS pemakaian FROM tagihan GROUP BY bulanTagih")
+	 		  ;
          
         if($query->num_rows() > 0){
             foreach($query->result() as $data){
@@ -57,12 +53,12 @@ class Dashboard_model extends CI_Model {
 	}
 
 	public function pelangganlist(){
-		return $this->db->order_by('id', 'DESC')->limit(4)->get('pelanggan')->result();
+		return $this->db->order_by('id_p', 'DESC')->limit(4)->get('pelanggan')->result();
 	}
 
 	public function tagihanlist(){
 		$this->db
-			->join('pelanggan', 'pelanggan.id = tagihan.pelanggan_id', 'left')
+			->join('pelanggan', 'pelanggan.id_p = tagihan.pelanggan_id', 'left')
 			->join('admin', 'admin.id = tagihan.id_admin', 'left')
 			->order_by('tagihan.id', 'DESC')->limit(4);
 		return $this->db->get('tagihan')->result();

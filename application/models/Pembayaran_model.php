@@ -24,8 +24,21 @@ class Pembayaran_model extends CI_Model
      */
     function get_all_pembayaran()
     {
-        $this->db->order_by('id', 'desc');
-        return $this->db->get('pembayaran')->result_array();
+        $this->db->order_by('tanggal_bayar', 'desc');
+        return $this->db->join('admin', 'admin.id = pembayaran.id_admin', 'left')
+                        ->get('pembayaran')->result_array();
+    }
+
+    function submit($params){
+
+        $kueri=$this->db->insert('pembayaran', $params);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+        
+
     }
         
     /*

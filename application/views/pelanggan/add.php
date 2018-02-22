@@ -26,7 +26,7 @@
 						<div class="form-group">
 		                <select name="tarif" class="form-control select2" style="width: 100%;">
 		                <?php foreach($tarif as $t){ ?>
-		                  <option value="<?php echo $t['kode']; ?>"><?php echo $t['kode']; ?></option>
+		                  <option value="<?php echo $t['id']; ?>"><?php echo $t['kode']; ?></option>
 		                  <?php } ?>
 		                 
 		                </select>

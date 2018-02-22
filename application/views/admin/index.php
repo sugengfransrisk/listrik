@@ -5,7 +5,7 @@
             <div class="box-header">
                 <h3 class="box-title">Admin Listing</h3>
             	<div class="box-tools">
-                    <a href="<?php echo site_url('admin/tambah'); ?>" class="btn btn-success btn-sm">Add</a> 
+                    <a href="<?php echo base_url('admin/tambah'); ?>" class="btn btn-success btn-sm">Add</a> 
                 </div>
             </div>
             <div class="box-body">
@@ -34,8 +34,8 @@
 						<td><?php echo $a['last_login']; ?></td>
 						<td>
                              <a  class="btn btn-info btn-xs prof" id="<?php echo $a['id']; ?>" ><span class="fa fa-search prof"></span><i > Info</i></a> 
-                            <a href="<?php echo site_url('admin/edit/'.$a['id']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('admin/remove/'.$a['id']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                            <a href="<?php echo base_url('admin/edit/'.$a['id']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
+                            <a href="<?php echo base_url('admin/remove/'.$a['id']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
                         </td>
                     </tr>
                     <?php } ?>

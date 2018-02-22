@@ -28,6 +28,23 @@ class Dashboard extends CI_Controller {
 		);
 		$this->load->view('layouts/main', $data);
 	}
+	public function dash_pel(){
+		$data = array(
+			'title'			=> 'Dashboard',
+			'_view'	=> 'pelanggan/dashboard',
+			'tgcount'		=> $this->Dashboard_model->tagihancount(),
+			'admcount'		=> $this->Dashboard_model->admincount(),
+			'byrcount'		=> $this->Dashboard_model->pembayarancount(),
+			'trfcount'		=> $this->Dashboard_model->tarifcount(),
+			'plcount'		=> $this->Dashboard_model->pelanggancount(),
+			'adminlist'		=> $this->Dashboard_model->adminlist(),
+			'tariflist'		=> $this->Dashboard_model->tariflist(),
+			'pelangganlist'		=> $this->Dashboard_model->pelangganlist(),
+			'tagihanlist'		=> $this->Dashboard_model->tagihanlist(),
+			'data'=>$this->Dashboard_model->grafik()
+		);
+		$this->load->view('layouts/main', $data);
+	}
 
 	public function logout(){
 		$data = array(

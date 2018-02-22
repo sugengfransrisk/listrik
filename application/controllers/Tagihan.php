@@ -26,15 +26,19 @@ class Tagihan extends CI_Controller{
      * Adding a new tagihan
      */
     function add()
+
     {   
+
+         $id_admin= $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('id'); 
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
 				'tahunTagih' => $this->input->post('tahunTagih'),
 				'bulanTagih' => $this->input->post('bulanTagih'),
 				'pemakaian' => $this->input->post('pemakaian'),
-				'status' => $this->input->post('status'),
+				'status' => "Belum Dibayar",
 				'pelanggan_id' => $this->input->post('pelanggan_id'),
+                'id_admin' => $id_admin,
             );
             
             $tagihan_id = $this->Tagihan_model->add_tagihan($params);
@@ -42,6 +46,8 @@ class Tagihan extends CI_Controller{
         }
         else
         {            
+            $this->load->model('Pelanggan_model');
+            $data['all_pelanggan'] = $this->Pelanggan_model->get_all_pelanggan();
             $data['_view'] = 'tagihan/add';
             $this->load->view('layouts/main',$data);
         }

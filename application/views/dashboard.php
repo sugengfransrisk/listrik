@@ -73,7 +73,7 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-      </div>            
+      </div>           
                        <div class="box box-danger">
             <div class="box-header">
                 
@@ -92,6 +92,7 @@
                                 
                         </div>
                         </div>
+                      
 
 
                         
