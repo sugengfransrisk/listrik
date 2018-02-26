@@ -25,7 +25,13 @@
        
       <div class="row">
         <div class="col-xs-4 invoice-col">
-          <p class="lead">Amount Due 2/22/2014</p>
+          <p class="lead">Amount Due <?php
+            $bulan = array("Januari", "February", "Maret","April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+                    
+                    
+            $d=$far['bulanTagih']; 
+
+           echo $bulan["$d"];?>-<?php echo $far['tahunTagih']?></p>
 
           <div class="table-responsive">
             <table class="table">
@@ -39,14 +45,29 @@
               </tr>
               <tr>
                 <th>Denda:</th>
-                <td>Rp.</td>
+                <td>Rp.<?php
+                 $now = date('Y-m-d');
+                $bulan= date('m');
+                $tgl= date('d');
+                $thn=date('Y');
+                if (($tgl>30 )||( $far['bulanTagih'] < $bulan  )||($far['tahunTagih']<>  $thn  )) {
+
+            
+                $denda=5000;
+               } else {
+                 $denda=0;
+               }
+               echo $denda;
+
+
+                ?></td>
               </tr>
               <tr>
                 <th>Total:</th>
                 <td>Rp.
                   <?php
                   $admin=5000;
-                  $semua=$total+$admin;
+                  $semua=$total+$admin+$denda;
                   echo number_format($semua);
 
 

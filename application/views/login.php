@@ -28,6 +28,7 @@
              <a href="#" class="lnk">
              
             <button type="submit" class="btn btn--right">Sign in  </button>
+            <button type="submit" class="btn btn--left">Daftar  </button>
           
     
           </div>

@@ -22,16 +22,24 @@ class Dashboard_model extends CI_Model {
 	public function pelanggancount(){
 		return $this->db->count_all('pelanggan');
 	}
+	
 
 	
 
 	
 	public function grafik()
 	{
-		$id=$this->session->userdata('id');
+		$id=$this->session->userdata('pid');
 
-	 $query = $this->db->query("SELECT bulanTagih,SUM(pemakaian) AS pemakaian FROM tagihan GROUP BY bulanTagih")
-	 		  ;
+		$this->db->select('bulanTagih')
+				 ->select('SUM(pemakaian) as pemakaian')
+				 ->from('tagihan')
+				 ->where('pelanggan_id', $id)
+				 
+				 ->group_by('bulanTagih');
+
+
+	 $query = $this->db->get();
          
         if($query->num_rows() > 0){
             foreach($query->result() as $data){

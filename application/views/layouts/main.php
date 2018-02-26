@@ -26,6 +26,7 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url('resources/css/_all-skins.min.css');?>">
 
+
         
         <!-- Datatables -->
          
@@ -107,7 +108,7 @@
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
                             <a href="<?php echo base_url() ?>dashboard">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-area-chart"></i> <span>Dashboard</span>
                             </a>
                         </li>
                         <?php if($this->session->userdata('role') == 'admin'): ?>
@@ -153,6 +154,7 @@
 						<li>
                             <a href="#">
                                 <i class="fa fa-credit-card"></i> <span>Tagihan</span>
+
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -178,6 +180,20 @@
                         </li>
                     <?php endif;?>
                       <?php if($this->session->userdata('role') == 'pelanggan'): ?>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-credit-card"></i> <span>Tagihan</span>
+                                <span class="pull-right-container">
+              <span class="label label-primary pull-right result"></span>
+            </span>
+                            </a>
+                            <ul class="treeview-menu">
+                               
+                                <li>
+                                    <a href="<?php echo base_url('tagihan/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li>
                             <a href="#">
                                 <i class="fa fa-print"></i> <span>Pembayaran Listrik</span>
@@ -254,7 +270,6 @@
         <script src="<?php echo base_url('resources/js/moment.js');?>"></script>
         <script src="<?php echo base_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
         <script src="<?php echo base_url('resources/js/global.js');?>"></script>
-        
-
+      
     </body>
 </html>

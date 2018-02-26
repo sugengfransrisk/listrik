@@ -16,6 +16,7 @@ class Invoice extends CI_Controller {
 		$data['far']=$this->invoice_model->tampil($id);
 		$tarif=$this->invoice_model->tarif($id);
 		$pakai=$this->invoice_model->pemakaian($id);
+		
 
 		$data['total']=$tarif * $pakai;
 		

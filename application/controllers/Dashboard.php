@@ -56,6 +56,7 @@ class Dashboard extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('welcome');
 	}
+	
 
 	public function profile(){
 		$uname = $this->input->get('usr');

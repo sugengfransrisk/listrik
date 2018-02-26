@@ -17,7 +17,8 @@ public function userCheck(){
 				'logged_in'	=> true,
 				'role'		=> $kueri->row()->role,
 				'foto'		=> $kueri->row()->foto,
-				'id'        =>$kueri->row()->id
+				'id'        =>$kueri->row()->id,
+				'pid'		 =>$kueri->row()->id_pelanggan
 			);
 			
 			$this->session->set_userdata($data);

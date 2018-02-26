@@ -9,6 +9,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- row -->
+                 <?php if($this->session->userdata('role') == 'admin'){ ?>
             <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
@@ -73,25 +74,29 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-      </div>           
+      </div>    
+      <?php }else{ ?>
+
                        <div class="box box-danger">
             <div class="box-header">
-                
+                 <h3 class="box-title">Penggunaan Listrik Anda</h3>
                </div>
+               <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-center">
+                    <strong></strong>
+                  </p>
+
+                  <div class="chart">
+                    <!-- Sales Chart Canvas -->
+                   <canvas class="text-center" id="canvas"  width="1000" height="280"></canvas>
+                  </div>
+                  <!-- /.chart-responsive -->
+                </div>
                     <!-- /.col-lg-12 -->
                
-                        <div class="white-box">
-                            <div class="text-center">
-                            <div class="text-left">
-                                <h2 class="text-info">Penggunaan Listik Anda</h2>
-                            </div>
-                            <div class="col-in row">
-                                <canvas class="text-center" id="canvas" width="1000" height="280"></canvas>
-                                </div>
-                            </div>
-                                
-                        </div>
-                        </div>
+                       
                       
 
 
@@ -100,8 +105,11 @@
    
         </div>
         <?php
+        $bulans = array("Januari", "February", "Maret","April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+                    
         foreach($data as $data){
             $bulan[] = $data->bulanTagih;
+           
             $pakai[] = (float) $data->pemakaian;
         }
     ?>
@@ -129,7 +137,7 @@
         var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
         
     </script>
-        
+        <?php } ?>
  
                     
 

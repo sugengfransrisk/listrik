@@ -17,8 +17,11 @@ class Pembayaran extends CI_Controller{
      */
     function index()
     {
+        if ($this->session->userdata('role')=='admin') {
         $data['pembayaran'] = $this->Pembayaran_model->get_all_pembayaran();
-        
+        }else{
+        $data['pembayaran'] = $this->Pembayaran_model->get_user_pembayaran();
+        }
         $data['_view'] = 'pembayaran/index';
         $this->load->view('layouts/main',$data);
     }
@@ -28,15 +31,16 @@ class Pembayaran extends CI_Controller{
         $pakai=$this->invoice_model->pemakaian($id);
         $far=$this->invoice_model->tampil($id);
         $now = date('Y-m-d');
-        $bulan= date('m');
+        $bulan= date('n');
         $tgl= date('d');
-        if ($tgl>30) {
+        $thn=date('Y');
+        if (($tgl>30 )||( $far['bulanTagih'] < $bulan  )||($far['tahunTagih']<  $thn  )) {
+
             
            $denda=5000;
         } else {
             $denda=0;
         }
-        
 
 
         $total=$tarif * $pakai;
@@ -47,11 +51,12 @@ class Pembayaran extends CI_Controller{
             'biaya_denda' => $denda,
             'biaya_admin' => 5000,
             'status' => "menunggu konfirmasi",
-            'id_admin' => $this->session->userdata('id')
+            'id_pelanggan' => $this->session->userdata('pid')
 
 
         );
         if ($this->Pembayaran_model->submit($params,$id)== true) {
+            $this->Pembayaran_model->ubah($id);
             redirect('pembayaran/index');
         } else {
             redirect('pembayaran/index');
@@ -126,16 +131,10 @@ class Pembayaran extends CI_Controller{
      */
     function remove($id)
     {
-        $pembayaran = $this->Pembayaran_model->get_pembayaran($id);
-
-        // check if the pembayaran exists before trying to delete it
-        if(isset($pembayaran['id']))
-        {
-            $this->Pembayaran_model->delete_pembayaran($id);
-            redirect('pembayaran/index');
-        }
-        else
-            show_error('The pembayaran you are trying to delete does not exist.');
-    }
-    
+            if ( $this->Pembayaran_model->delete_pembayaran($id)==true) {
+                  redirect('pembayaran/index');
+            } else {
+                 redirect('pembayaran/index');
+            }
+     }
 }

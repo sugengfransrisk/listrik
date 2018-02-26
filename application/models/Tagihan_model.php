@@ -24,8 +24,18 @@ class Tagihan_model extends CI_Model
      */
     function get_all_tagihan()
     {
+       
+        return $this->db->where('status', "Belum Dibayar")
+                        ->join('pelanggan', 'pelanggan.id_p = tagihan.pelanggan_id', 'left')
+                        ->get('tagihan')->result_array();
+    }
+     function get_user_tagihan()
+    {
+        $user=$this->session->userdata('pid');
         $this->db->order_by('id', 'desc');
-        return $this->db->join('pelanggan', 'pelanggan.id_p = tagihan.pelanggan_id', 'left')
+        return $this->db->where('status', "Belum Dibayar")
+                        ->where('pelanggan_id', $user)
+                        ->join('pelanggan', 'pelanggan.id_p = tagihan.pelanggan_id', 'left')
                         ->get('tagihan')->result_array();
     }
         

@@ -16,7 +16,13 @@ class Tagihan extends CI_Controller{
      */
     function index()
     {
-        $data['tagihan'] = $this->Tagihan_model->get_all_tagihan();
+        if ($this->session->userdata('role')=='admin') {
+          $data['tagihan'] = $this->Tagihan_model->get_all_tagihan();
+        } else {
+          $data['tagihan'] = $this->Tagihan_model->get_user_tagihan();
+        }
+        
+      
         
         $data['_view'] = 'tagihan/index';
         $this->load->view('layouts/main',$data);

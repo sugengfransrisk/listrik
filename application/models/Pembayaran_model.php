@@ -25,11 +25,21 @@ class Pembayaran_model extends CI_Model
     function get_all_pembayaran()
     {
         $this->db->order_by('tanggal_bayar', 'desc');
-        return $this->db->join('admin', 'admin.id = pembayaran.id_admin', 'left')
+        return $this->db
+                        ->get('pembayaran')->result_array();
+    }
+    function get_user_pembayaran()
+    {
+         $user=$this->session->userdata('pid');
+        $this->db->order_by('tanggal_bayar', 'desc');
+        return $this->db->where('id_pelanggan', $user)
+                        
                         ->get('pembayaran')->result_array();
     }
 
-    function submit($params){
+    function submit($params,$id){
+
+
 
         $kueri=$this->db->insert('pembayaran', $params);
         if ($this->db->affected_rows() > 0) {
@@ -39,6 +49,13 @@ class Pembayaran_model extends CI_Model
         }
         
 
+    }
+
+    function ubah($id)
+    {
+       $ok = array('status' => "Menunggu Konfirmasi Admin");
+        $this->db->where('id', $id);
+        return $this->db->update('tagihan', $ok);
     }
         
     /*
@@ -64,6 +81,12 @@ class Pembayaran_model extends CI_Model
      */
     function delete_pembayaran($id)
     {
-        return $this->db->delete('pembayaran',array('id'=>$id));
+        $kueri=$this->db->delete('pembayaran',array('id_pem'=>$id));
+        if ($this->db->affected_rows()>0) {
+           return true;       
+            } else {
+            return false;
+        }
+        
     }
 }

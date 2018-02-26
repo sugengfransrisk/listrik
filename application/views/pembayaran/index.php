@@ -16,24 +16,25 @@
 						<th>Jumlah Tagihan</th>
 						<th>Biaya Denda</th>
 						<th>Biaya Admin</th>
-                        <th>Nama Admin</th>
+                       
 						<th>Status</th>
 						<th>Actions</th>
                     </tr>
-                    <?php foreach($pembayaran as $p){ ?>
+                    <?php 
+                    $no=1;
+                    foreach($pembayaran as $p){ ?>
                     <tr>
-						<td><?php echo $p['id']; ?></td>
+						<td><?php echo $no++; ?></td>
 						<td><?php echo $p['tanggal_bayar']; ?></td>
 						<td><?php echo $p['id_tagihan']; ?></td>
 						<td><?php echo $p['jumlah_tagihan']; ?></td>
 						<td><?php echo $p['biaya_denda']; ?></td>
 						<td><?php echo $p['biaya_admin']; ?></td>
-                        <td><?php echo $p['fullname']; ?></td>
 
 						<td><?php echo $p['status']; ?></td>
 						<td>
-                            
-                            <a href="<?php echo site_url('pembayaran/remove/'.$p['id']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                           
+                            <a href="<?php echo site_url('pembayaran/remove/'.$p['id_pem']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-search"></span> Info</a>
                         </td>
                     </tr>
                     <?php } ?>
