@@ -6,6 +6,7 @@ class Login_model extends CI_Model {
 
 
 
+
 public function userCheck(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');

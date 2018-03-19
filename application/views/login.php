@@ -28,7 +28,7 @@
              <a href="#" class="lnk">
              
             <button type="submit" class="btn btn--right">Sign in  </button>
-            <button type="submit" class="btn btn--left">Daftar  </button>
+            <a href="<?php echo base_url() ?>login/daftar" class="btn btn--left" role="button" >Daftar  </a>
           
     
           </div>

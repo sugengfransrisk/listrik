@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Login_model');
+		$this->load->model('Tarif_model');
 		
 	}
 	function Pelanggan(){
@@ -16,6 +17,10 @@ class Login extends CI_Controller {
     }
 	public function index(){
 		$this->load->view('login');
+	}
+	public function daftar(){
+		$data['daya']=$this->Tarif_model->get_all_tarif();
+		$this->load->view('register',$data);
 	}
 	public function dologin(){
 				if($this->Login_model->userCheck() == true){

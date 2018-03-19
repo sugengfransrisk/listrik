@@ -1,14 +1,13 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Pelanggan Listing</h3>
-            	<div class="box-tools">
-                    <a href="<?php echo base_url('pelanggan/add'); ?>" class="btn btn-success btn-sm">Add</a> 
-                </div>
-            </div>
-            <div class="box-body">
-                <table id="example2" class="table table-striped">
+<div class="right_col" role="main">
+  <div class="">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_title">
+            <h2>Data Admin</h2>
+          <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+                <thead>
                     <tr>
 						<th>No</th>
 						<th>Nama</th>
@@ -16,7 +15,8 @@
 						<th>KodeTarif</th>
 						<th>Actions</th>
                     </tr>
-
+                    </thead>
+                    <tbody>
                     <?php
                     $no=1;
                      foreach($pelanggan as $p){ ?>
@@ -26,12 +26,16 @@
 						<td><?php echo $p['alamat']; ?></td>
 						<td><?php echo $p['kode']; ?></td>
 						<td>
-                            <a href="<?php echo site_url('pelanggan/edit/'.$p['id_p']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('pelanggan/remove/'.$p['id_p']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                            <a href="<?php echo site_url('pelanggan/edit/'.$p['id_p']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Kelola</a> 
+                            <a href="<?php echo site_url('pelanggan/remove/'.$p['id_p']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Hapus</a>
                         </td>
                     </tr>
                     <?php } ?>
-                </table>
+                    </div>
+                    </div>
+                  </div>
+                </tbody>
+            </table>
                 <div class="pull-right">
                     <?php echo $this->pagination->create_links(); ?>                    
                 </div>                

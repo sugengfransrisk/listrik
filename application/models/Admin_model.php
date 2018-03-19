@@ -34,6 +34,18 @@ class Admin_model extends CI_Model
     /*
      * function to add new admin
      */
+    function check_noreg()
+{   
+     $noreg = $this->input->post('noreg');
+    $this->db->where('noreg',$noreg);
+    $query = $this->db->get('noreg');
+    if ($query->num_rows() > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
     function add_admin($foto)
     {
         $now=date('d-m-Y H:i:s');

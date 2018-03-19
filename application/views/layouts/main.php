@@ -1,275 +1,287 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-         <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/uploads/logo.png">
-        <title>ukk2</title>
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.6 -->
-        <!-- Ionicons -->
-       
-         <!-- Bootstrap 3.3.6 -->
-       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.6 -->
-        <link rel="stylesheet" href="<?php echo base_url('resources/css/bootstrap.min.css');?>">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="<?php echo base_url('resources/css/font-awesome.min.css');?>">
-        <!-- Ionicons -->
-      
-        <!-- Datetimepicker -->
-        <link rel="stylesheet" href="<?php echo base_url('resources/css/bootstrap-datetimepicker.min.css');?>">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="<?php echo base_url('resources/css/AdminLTE.min.css');?>">
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="<?php echo base_url('resources/css/_all-skins.min.css');?>">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/uploads/logo.png">
 
+    <title>LISTRIKU | <?php 
+                      echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('role');
+                      ?> Dashboard</title>
 
-        
-        <!-- Datatables -->
-         
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        
-      
-    </head>
+    <!-- Bootstrap -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-wysiwyg -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+  
+    <!-- bootstrap-progressbar -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     
-    <body class="hold-transition skin-white sidebar-mini">
-        <div class="wrapper">
-            <header class="main-header">
-                <!-- Logo -->
-                <a href="" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><img style="width: 30px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" /></span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><img style="width: 30px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" />LISTRIKU</span>
-                </a>
-                <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
+    <!-- Table css -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                        <!-- User Account: style can be found in dropdown.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo base_url() ?>uploads/<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('foto'); ?>" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('fullname'); ?> </span>
+
+    <!-- Custom Theme Style -->
+    <link href="<?php echo base_url(); ?>assets/gentelella/build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="<?php echo base_url(); ?>index.php/petugas/" class="site_title"><img style="width: 40px; " src="<?php echo base_url() ?>assets/uploads/logo.png" alt="home" /><span >LISTRIKU</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                 <img src="<?php echo base_url() ?>uploads/<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('foto'); ?>" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span> 
+                      <?php 
+                      echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('role');
+                      ?>
+                </span>
+                <h2><b><?php 
+                     echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('fullname'); 
+                      ?></b></h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="<?php echo base_url(); ?>index.php/Dashboard/"><i class="fa fa-home"></i> Dashboard </a></li>
+                  <?php if ($this->session->userdata('role')=='admin') {
+                   # code...
+                 ?>
+                  <li><a><i class="fa fa-table"></i> Lihat dan Kelola Data <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url('Admin/index');?>">Data Admin</a></li>
+                      <li><a href="<?php echo base_url('Pelanggan/index');?>">Data Pelanggan</a></li>
+                      <li><a href="<?php echo base_url('Tarif/index');?>">Data Tarif</a></li>
+                      <li><a href="<?php echo base_url('Tagihan/index');?>">Data Tagihan</a></li>
+                      <li><a href="<?php echo base_url('Pembayaran/index');?>">Data Pembayaran</a></li>
+                      <!--<li><a href="<?php echo base_url(); ?>index.php/admin/lihatpelanggaran">Data Pelanggaran</a></li>-->
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> Tambah Data <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url('Admin/add');?>">Data Admin</a></li>
+                      <li><a href="<?php echo base_url('Pelanggan/add');?>">Data Pelanggan</a></li>
+                      <li><a href="<?php echo base_url('Tarif/add');?>">Data Tarif</a></li>
+                      <li><a href="<?php echo base_url('Tagihan/add');?>">Data Tagihan</a></li>
+                      <li><a href="<?php echo base_url('Pembayaran/add');?>">Data Pembayaran</a></li>
+                      <!--<li><a href="<?php echo base_url(); ?>index.php/admin/tambahpelanggaran">Data Pelanggaran</a></li>-->
+                    </ul>
+                  </li>
+                    <?php }?>
+                 <?php if ($this->session->userdata('role')=='pelanggan') {
+                   # code...
+                 ?>
+                  <li><a href="<?php echo base_url(); ?>Tagihan/index"><i class="fa fa-calendar"></i> Tagihan Anda </a></li>
+                  <li><a href="<?php echo base_url(); ?>Pembayaran/index"><i class="fa fa-credit-card"></i> List Pembayaran </a></li>
+                  <li><a href="<?php echo base_url(); ?>layanan"><i class="fa fa-comments"></i> Layanan Pelanggan </a></li>
+                  <?php }?>
+                </ul>
+              </div>
+             
+
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+             <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="<?php echo base_url() ?>uploads/<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('foto'); ?>" alt=""><?php  echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('fullname');  ?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="<?php echo base_url() ?>login/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                <?php if($this->session->userdata('role')=='admin'): ?>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                   
+                                    <span class="badge bg-green"></span>
+                                   
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <img src="<?php echo base_url() ?>uploads/<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('foto'); ?>" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        <?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('fullname'); ?>  - <?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('role'); ?> 
-                                        
-                                    </p>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                               
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src=""  alt="Profile Image" /></span>
+                                            <span>
+                                                <span></span>
+                                                <span class="time">15</span>
+                                            </span>
+                                            <span class="message">
+                                              <b>hai
+                                            </span>
+                                        </a>
                                     </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="<?php echo base_url() ?>login/logout" class="btn btn-default btn-flat">Sign out</a>
+                               
+                                    <li>
+                                        <div class="text-center">
+                                            <a href="<?php echo base_url() ?>notification/">
+                                                <strong>Lihat semua notifikasi</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
                                         </div>
                                     </li>
+                                
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>Tidak Ada Notifkasi</strong>
+                                            </a>
+                                        </div>
+                                    </li>
+                               
                                 </ul>
                             </li>
+                            <?php endif; ?>
                         </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="<?php echo base_url() ?>uploads/<?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('foto'); ?>" style="height: 45px; widht: 60px" class="img-circle" alt="User Image">
-                        </div>
-                        <div class="pull-left info">
-                            <p><?php echo $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('fullname'); ?></p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li>
-                            <a href="<?php echo base_url() ?>dashboard">
-                                <i class="fa fa-area-chart"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <?php if($this->session->userdata('role') == 'admin'): ?>
-						<li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-user"></i> <span>Admin</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo base_url('admin/tambah');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo base_url('admin/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-address-book fa-inverse"></i> <span>Pelanggan</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo base_url('pelanggan/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo base_url('pelanggan/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-print"></i> <span>Pembayaran</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo base_url('pembayaran/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo base_url('pembayaran/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-credit-card"></i> <span>Tagihan</span>
-
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo base_url('tagihan/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo base_url('tagihan/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-money"></i> <span>Tarif</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo base_url('tarif/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo base_url('tarif/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-                    <?php endif;?>
-                      <?php if($this->session->userdata('role') == 'pelanggan'): ?>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-credit-card"></i> <span>Tagihan</span>
-                                <span class="pull-right-container">
-              <span class="label label-primary pull-right result"></span>
-            </span>
-                            </a>
-                            <ul class="treeview-menu">
-                               
-                                <li>
-                                    <a href="<?php echo base_url('tagihan/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-                            </ul>
-                        </li>
-                    <li>
-                            <a href="#">
-                                <i class="fa fa-print"></i> <span>Pembayaran Listrik</span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>
-                                    <a href="<?php echo base_url('Pembayaran/index');?>"><i class="fa fa-list-ul"></i> Lihat</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <?php endif;?>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Main content -->
-                <section class="content">
-                    <?php                    
-                    if(isset($_view) && $_view)
-                        $this->load->view($_view);
-                    ?>                    
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <strong> <a >Mastedz</a> Soft</strong>
-            </footer>
-
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Create the tabs -->
-                <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                    
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- Home tab content -->
-                    <div class="tab-pane" id="control-sidebar-home-tab">
-
-                    </div>
-                    <!-- /.tab-pane -->
-                    <!-- Stats tab content -->
-                    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                    <!-- /.tab-pane -->
-                    
+                    </nav>
                 </div>
-            </aside>
-            <!-- /.control-sidebar -->
-            <!-- Add the sidebar's background. This div must be placed
-            immediately after the control sidebar -->
-            <div class="control-sidebar-bg"></div>
-        </div>
-        <!-- ./wrapper -->
+            </div>
+        <!-- /top navigation -->
 
-        
-         
-       
-      <!-- jQuery 2.2.3 -->
-        <!-- jQuery 2.2.3 -->
-        <script src="<?php echo base_url('resources/js/jquery-2.2.3.min.js');?>"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="<?php echo base_url('resources/js/bootstrap.min.js');?>"></script>
-        <!-- FastClick -->
-        <script src="<?php echo base_url('resources/js/fastclick.js');?>"></script>
-        <!-- AdminLTE App -->
-        <script src="<?php echo base_url('resources/js/app.min.js');?>"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="<?php echo base_url('resources/js/demo.js');?>"></script>
-        <!-- DatePicker -->
-        <script src="<?php echo base_url('resources/js/moment.js');?>"></script>
-        <script src="<?php echo base_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
-        <script src="<?php echo base_url('resources/js/global.js');?>"></script>
-      
-    </body>
+         <?php                    
+            if(isset($_view) && $_view)
+            $this->load->view($_view);
+        ?>      
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Sistem Informasi Pembayaran Listrik | LISTRIKU Beta release
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+     <!-- jQuery -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/moment/min/moment.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- validator -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/validator/validator.js"></script>
+
+    <!-- bootstrap-wysiwyg -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="<?php echo base_url(); ?>assets/gentelella/build/js/custom.min.js"></script>
+    
+  </body>
 </html>

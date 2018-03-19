@@ -65,6 +65,7 @@ class Pembayaran extends CI_Controller{
 
         
     }
+    
 
     /*
      * Adding a new pembayaran
@@ -80,6 +81,7 @@ class Pembayaran extends CI_Controller{
 				'biaya_denda' => $this->input->post('biaya_denda'),
 				'biaya_admin' => $this->input->post('biaya_admin'),
 				'status' => $this->input->post('status'),
+
             );
             
             $pembayaran_id = $this->Pembayaran_model->add_pembayaran($params);

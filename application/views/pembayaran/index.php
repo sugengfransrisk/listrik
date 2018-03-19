@@ -1,14 +1,13 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Pembayaran Listing</h3>
-            	<div class="box-tools">
-                   
-                </div>
-            </div>
-            <div class="box-body">
-                <table class="table table-striped">
+<div class="right_col" role="main">
+  <div class="">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_title">
+            <h2>Data Pembayaran</h2>
+          <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+                <thead>
                     <tr>
 						<th>ID</th>
 						<th>Tanggal Bayar</th>
@@ -20,6 +19,8 @@
 						<th>Status</th>
 						<th>Actions</th>
                     </tr>
+                     </thead>
+                    <tbody>
                     <?php 
                     $no=1;
                     foreach($pembayaran as $p){ ?>
@@ -33,13 +34,23 @@
 
 						<td><?php echo $p['status']; ?></td>
 						<td>
-                           
-                            <a href="<?php echo site_url('pembayaran/remove/'.$p['id_pem']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-search"></span> Info</a>
+                            <?php if ($this->session->userdata('role')=='admin') {
+                        # code...
+                            ?>
+                            <a href="<?php echo site_url('pembayaran/confirm/'.$p['id_pem']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-check-square"></span> Konfirmasi</a>
+                            <?php } ?>
+                            <a href="<?php echo site_url('pembayaran/remove/'.$p['id_pem']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-search "></span> Info</a>
                         </td>
                     </tr>
-                    <?php } ?>
-                </table>
-                                
+                    <?php }  ?>
+             </div>
+                    </div>
+                  </div>
+                </tbody>
+            </table>
+                <div class="pull-right">
+                    <?php echo $this->pagination->create_links(); ?>                    
+                </div>                
             </div>
         </div>
     </div>

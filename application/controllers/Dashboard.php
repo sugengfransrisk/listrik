@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 			'trfcount'		=> $this->Dashboard_model->tarifcount(),
 			'plcount'		=> $this->Dashboard_model->pelanggancount(),
 			'adminlist'		=> $this->Dashboard_model->adminlist(),
-			'tariflist'		=> $this->Dashboard_model->tariflist(),
+			'pembayaranlist'		=> $this->Dashboard_model->pembayaranlist(),
 			'pelangganlist'		=> $this->Dashboard_model->pelangganlist(),
 			'tagihanlist'		=> $this->Dashboard_model->tagihanlist(),
 			'data'=>$this->Dashboard_model->grafik()

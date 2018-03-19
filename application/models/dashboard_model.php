@@ -57,7 +57,7 @@ class Dashboard_model extends CI_Model {
 	}
 
 	public function pembayaranlist(){
-		return $this->db->order_by('id', 'DESC')->limit(4)->get('pembayaran')->result();
+		return $this->db->order_by('id_pem', 'DESC')->limit(4)->get('pembayaran')->result();
 	}
 
 	public function pelangganlist(){

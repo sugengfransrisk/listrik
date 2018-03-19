@@ -18,12 +18,14 @@ class Tagihan extends CI_Controller{
     {
         if ($this->session->userdata('role')=='admin') {
           $data['tagihan'] = $this->Tagihan_model->get_all_tagihan();
+           $this->load->model('Pelanggan_model');
+          $data['all_pelanggan'] = $this->Pelanggan_model->get_all_pelanggan();
         } else {
           $data['tagihan'] = $this->Tagihan_model->get_user_tagihan();
         }
         
       
-        
+         
         $data['_view'] = 'tagihan/index';
         $this->load->view('layouts/main',$data);
     }
@@ -36,8 +38,8 @@ class Tagihan extends CI_Controller{
     {   
 
          $id_admin= $this->db->where('username', $this->session->userdata('username'))->get('admin')->row('id'); 
-        if(isset($_POST) && count($_POST) > 0)     
-        {   
+
+     
             $params = array(
 				'tahunTagih' => $this->input->post('tahunTagih'),
 				'bulanTagih' => $this->input->post('bulanTagih'),
@@ -49,14 +51,7 @@ class Tagihan extends CI_Controller{
             
             $tagihan_id = $this->Tagihan_model->add_tagihan($params);
             redirect('tagihan/index');
-        }
-        else
-        {            
-            $this->load->model('Pelanggan_model');
-            $data['all_pelanggan'] = $this->Pelanggan_model->get_all_pelanggan();
-            $data['_view'] = 'tagihan/add';
-            $this->load->view('layouts/main',$data);
-        }
+       
     }  
 
     /*
